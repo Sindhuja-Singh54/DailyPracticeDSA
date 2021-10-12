@@ -1,0 +1,48 @@
+Q  Unique Paths
+
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+
+How many possible unique paths are there?
+
+ eg 
+  1) Input: m = 3, n = 7
+     Output: 28
+     
+  2) Input: m = 3, n = 2
+     Output: 3
+    Explanation:
+        From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+        1. Right -> Down -> Down
+        2. Down -> Down -> Right
+        3. Down -> Right -> Down
+        
+        
+ 1st Approach -> Recursive (Brute force approach)
+ 
+   public int uniquePaths(int m, int n) {
+        if(m==1 || n==1){
+            return 1;
+        }
+        return uniquePaths(m-1,n)+uniquePaths(m,n-1);
+    }
+     
+  2nd Approach -> DP
+  
+      public int uniquePaths(int m, int n) {
+     int dp[][] = new int[n][m];
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(i==0 || j==0){
+                   dp[i][j]=1;   // only 1 unique path is possible for 1st col and 2nd row.
+                }else{
+                    dp[i][j]=dp[i-1][j]+dp[i][j-1];
+                }
+            }
+        }
+        return dp[n-1][m-1];
+    }
+    
+    https://leetcode.com/problems/unique-paths/submissions/
+  
