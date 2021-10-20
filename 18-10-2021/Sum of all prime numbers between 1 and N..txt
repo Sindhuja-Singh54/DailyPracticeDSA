@@ -1,0 +1,47 @@
+Q
+
+Sum of all prime numbers between 1 and N.
+
+Given a positive integer N, find the sum of all prime numbers between 1 and N(inclusive).
+ 
+
+Example 1:
+
+Input: N = 5
+Output: 10
+Explanation: 2, 3, and 5 are prime
+numbers between 1 and 5(inclusive).
+
+
+Example 2:
+
+Input: N = 10
+Output: 17
+Explanation: 2, 3, 5 and 7 are prime
+numbers between 1 and 10(inclusive).
+
+Ans
+
+ public long prime_Sum(int n)
+    {
+         boolean prime[]=new boolean[n + 1];
+      
+        Arrays.fill(prime, true);
+      
+        for (int p = 2; p * p <= n; p++) {
+      
+            if (prime[p] == true) {
+      
+                for (int i = p * 2; i <= n; i += p)
+                    prime[i] = false;
+            }
+        }
+      
+        long sum = 0;
+        for (int i = 2; i <= n; i++)
+            if (prime[i])
+                sum += i;
+        return sum;
+    }
+
+Q->https://practice.geeksforgeeks.org/problems/sum-of-all-prime-numbers-between-1-and-n4404/1/?track=PG-Mathematics&batchId=457
